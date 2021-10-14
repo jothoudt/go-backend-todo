@@ -17,12 +17,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// const (
-// 	DB_USER     = os.Setenv("DB_USER")
-// 	DB_PASSWORD = os.Setenv("DB_PASSWORD")
-// 	DB_NAME     = os.Setenv("DB_PASSWORD")
-// )
-
 //-----This is to prevent an error for a NULL SQL VALUE------//
 type NullString string
 
@@ -61,7 +55,6 @@ type JsonResponse struct {
 
 func main() {
 	router := mux.NewRouter()
-	// router.StrictSlash(true)
 
 	cors := handlers.CORS(
 		handlers.AllowedHeaders([]string{"content-type"}),
