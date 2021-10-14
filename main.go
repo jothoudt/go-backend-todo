@@ -71,6 +71,8 @@ func main() {
 	router.HandleFunc("/api/tasks/", CreateTask).Methods("POST")
 	//Delete a task
 	router.HandleFunc("/api/tasks/{id}", DeleteTask).Methods("DELETE")
+	// to update a task to complete
+	router.HandleFunc("/api/tasks/{id}", CompleteTask).Methods("PUT")
 	//test server
 	router.HandleFunc("/", HelloServer)
 	//spin up server
@@ -94,7 +96,6 @@ func setupDB() *sql.DB {
 	//-----------------------------------------------//
 	//information used to setup database connection
 	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
-	fmt.Println(dbinfo)
 	//open database
 	db, err := sql.Open("postgres", dbinfo)
 	//check error
@@ -178,6 +179,26 @@ func DeleteTask(w http.ResponseWriter, r *http.Request) {
 	//send response
 	json.NewEncoder(w).Encode(response)
 } //end DeleteTask
+
+//PUT---to update a task to complete
+func CompleteTask(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	//get id to use for SQL query
+	id := params["id"]
+	//define completed time to add to the database
+	completedTime := time.Now()
+	//define response
+	var response = JsonResponse{}
+	//set up database connection
+	db := setupDB()
+	//database query
+	_, err := db.Exec("UPDATE todo SET completed=$1, date_completed=$2 WHERE id= $3;", true, completedTime, id)
+	// check errors
+	checkErr(err)
+	response = JsonResponse{Type: "success", Message: "This task has been updated to complete successfully!"}
+	//send response
+	json.NewEncoder(w).Encode(response)
+} //end CompleteTask
 
 //to test server
 func HelloServer(w http.ResponseWriter, r *http.Request) {
