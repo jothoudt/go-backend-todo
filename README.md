@@ -1,6 +1,6 @@
 # go-backend-todo
 
-This is one of the REST-api applications for my to-do list. It allows user to GET, POST, DELETE, and UPDATE tasks. This is my first time working with Go and it is just to get some practice. The front-end of this application can be found at [front-end to-do](https://github.com/jothoudt/frontend-to-do).
+This is one of the REST-api applications for my to-do list. It allows the user to GET, POST, DELETE, and UPDATE tasks. This is my first time working with Go and it is just to get some practice. The front-end of this application can be found at [front-end to-do](https://github.com/jothoudt/frontend-to-do).
 
 # Technologies Used
 
