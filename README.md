@@ -16,8 +16,8 @@ This is one of the REST-api applications for my to-do list. It allows the user t
 - Must have postgreSQL installed
 - Create a database "go_todo"
 - Create the database table found in the database.sql file
-- Get the front-end of the to-do list [here](https://github.com/jothoudt/frontend-to-do).
+- go run main.go to start the application
 
+- Get the front-end of the to-do list [here](https://github.com/jothoudt/frontend-to-do).
 - npm start on the front-end
 
-- go run main.go
